@@ -12,10 +12,6 @@ export class GameObject{
         this.bump=CommonTools.bump;
     }
 
-    hitTest(colliders){
-        
-        this.bump.hit(this.pixiElement,colliders,true,true);
-    }
 
     destroy(){
         this.pixiElement.destroy();

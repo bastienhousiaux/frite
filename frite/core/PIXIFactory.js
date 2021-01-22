@@ -8,7 +8,12 @@ export class PIXIFactory{
         return this.loader.resources[name].texture;
     }
 
-    createSprite(textureName){
+    getAtlasTexture(atlas,texture){
+        return this.loader.resources[atlas].textures[texture];
+    }
+
+    createSprite(textureName,atlasTextureName){
+        if(atlasTextureName)return new PIXI.Sprite(this.getAtlasTexture(textureName,atlasTextureName));
         return new PIXI.Sprite(this.getTexture(textureName));
     }
 

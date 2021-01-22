@@ -4,10 +4,8 @@ import {PIXIFactory} from "./PIXIFactory.js";
 
 export class App extends PIXI.Application{
 
-    constructor(){
-        super({
-            width: 800, height: 600, backgroundColor: 0x1099bb, resolution: window.devicePixelRatio || 1,
-        });
+    constructor(options){
+        super(options);
         document.body.appendChild(this.view);
         this.scenes={};
         this.ticker.add(this.update.bind(this));
@@ -24,11 +22,11 @@ export class App extends PIXI.Application{
         CommonTools.mouse.init();
     }
 
-    createScene(name,resources){
-        var scene=new Scene(resources);
-        this.scenes[name]=scene;
-        return scene;
-    }
+    // createScene(name,resources){
+    //     var scene=new Scene(resources);
+    //     this.scenes[name]=scene;
+    //     return scene;
+    // }
 
     addScene(name,scene){
         this.scenes[name]=scene;
