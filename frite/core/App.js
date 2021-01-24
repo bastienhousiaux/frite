@@ -1,5 +1,6 @@
 import {Scene} from "../structure/Scene.js";
 import { CommonTools } from "./CommonTools.js";
+import { Frite } from "./Frite.js";
 import {PIXIFactory} from "./PIXIFactory.js";
 
 export class App extends PIXI.Application{
@@ -10,7 +11,9 @@ export class App extends PIXI.Application{
         this.scenes={};
         this.ticker.add(this.update.bind(this));
         this.currentScene=null;
-        this.pixiFactory=new PIXIFactory(this.loader);
+        // this.pixiFactory=new PIXIFactory(this.loader);
+
+        Frite.pixiFactory=new PIXIFactory(this.loader);
         this.loader.onComplete.add(()=>{
             this.stage.addChild(this.currentScene.pixiElement);
             

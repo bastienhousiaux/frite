@@ -1,3 +1,4 @@
+import { Frite } from "../core/Frite.js";
 import { GameObject } from "../core/GameObject.js";
 
 export class Layer extends GameObject{
@@ -10,6 +11,24 @@ export class Layer extends GameObject{
         child.gameObject=gameObject;
         this.pixiElement.addChild(child);
         return gameObject;
+    }
+
+    createTilingSprite(textureName,width,height,options){
+        return this.addChild(
+            Frite.pixiFactory.createTilingSprite(textureName,width,height,options)
+        );
+    }
+
+    createSprite(textureName,options){
+        return this.addChild(
+            Frite.pixiFactory.createSprite(textureName,options)
+        );
+    }
+
+    createSpriteFromAtlas(atlasName,textureName,options){
+        return this.addChild(
+            Frite.pixiFactory.createSpriteFromAtlas(atlasName,textureName,options)
+        );
     }
 
     update(delta){

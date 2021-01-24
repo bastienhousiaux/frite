@@ -12,9 +12,34 @@ export class PIXIFactory{
         return this.loader.resources[atlas].textures[texture];
     }
 
-    createSprite(textureName,atlasTextureName){
-        if(atlasTextureName)return new PIXI.Sprite(this.getAtlasTexture(textureName,atlasTextureName));
-        return new PIXI.Sprite(this.getTexture(textureName));
+    createSpriteFromAtlas(atlasName,textureName,options){
+        let sprite=new PIXI.Sprite(this.getAtlasTexture(atlasName,textureName));
+        this._applyOptions(sprite,options);
+        return sprite;
+    }
+
+    createSprite(textureName,options){
+        let sprite=new PIXI.Sprite(this.getTexture(textureName));
+        this._applyOptions(sprite,options);
+        console.log(sprite);
+        return sprite;
+    }
+
+    createTilingSprite(textureName,width,height,options){
+        let tilingSprite=new PIXI.TilingSprite(
+            this.getTexture(textureName),
+            width,
+            height
+        );
+        this._applyOptions(options);
+        return tilingSprite;
+    }
+
+    _applyOptions(object,options){
+        for(var key in options){
+            _.set(object,key,options[key]);
+        }
+        return object;
     }
 
     createGraphics(){

@@ -1,4 +1,6 @@
-export class Component{
+import { EventEmitter } from "../core/EventEmitter.js";
+
+export class Component extends EventEmitter{
     /**
      * 
      * @param {{
@@ -6,9 +8,14 @@ export class Component{
      * }} options 
      */
     constructor(options={}){
+        super();
         this.enabled=options.enabled!=undefined?true:options.enabled;
     }
 
+    /**
+     * 
+     * @param {GameObject} gameObject 
+     */
     init(gameObject){
         
     }

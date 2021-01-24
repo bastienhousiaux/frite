@@ -1,58 +1,89 @@
 export class Vector2{
 
-    constructor(){
+    /**
+     * 
+     * @param {{
+     *      x?:number,
+     *      y?:number,
+     *      length?:number,
+     *      angle?:number
+     * }} options 
+     */
+    constructor(options){
+        if(options.x!=undefined && options.y!=undefined){
+            this._x=options.x;
+            this._y=options.y;
+            this._computeLengthAndAngle();
+        }else{
+            if(options.length!=undefined && options.angle!=undefined){
+                this._length=options.length;
+                this._angle=options.angle;
+                this._computeXY();
+            }else{
+                console.error("a Vector 2 should always be declared with either x,y or length/angle couple");
+            }
+        }
     }
 
     static fromXY(x,y){
-        let vector2=new Vector2();
-        vector2.x=+x;
-        vector2.y=+y;
-        vector2.computeLengthAndAngle();
-        return vector2;
+        return new Vector2({x:x,y:y});
     }
 
     static fromAngle(angle,length){
-        let vector2=new Vector2();
-        vector2.angle=+angle;
-        vector2.length=+length;
-        vector2.computeXY();
-        return vector2;
+        return new Vector2({angle:angle,length:length});
+    }
+    
+    set angle(angle){
+        this._angle=angle;
+        this._computeXY();
     }
 
-    setAngle(angle){
-        this.angle=angle;
-        this.computeXY();
+    set length(length){
+        this._length=length;
+        this._computeXY();
     }
 
-    setLength(length){
-        this.length=length;
-        this.computeXY();
+    set x(x){
+        this._x=x;
+        this._computeLengthAndAngle();
     }
 
-    setX(x){
-        this.x=x;
-        this.computeLengthAndAngle();
+    set y(y){
+        this._y=y;
+        this._computeLengthAndAngle();
     }
 
-    setY(y){
-        this.y=y;
-        this.computeLengthAndAngle();
+    get x(){
+        return this._x;
     }
 
-    computeXY(){
-        let radianAngle=this.angle*Math.PI/180;
-        this.x=+(Math.cos(radianAngle)*this.length);
-        this.y=+(Math.sin(radianAngle)*this.length);
+    get y(){
+        return this._y;
     }
 
-    computeLengthAndAngle(){
-        this.length=+Math.sqrt(this.x*this.x+this.y*this.y);
-        this.angle=+(Math.atan(this.y/this.x)*180/Math.PI);
+    get angle(){
+        return this._y;
+    }
+
+    get length(){
+        return this._length;
+    }
+
+    _computeXY(){
+        let radianAngle=this._angle*Math.PI/180;
+        this._x=+(Math.cos(radianAngle)*this.length);
+        this._y=+(Math.sin(radianAngle)*this.length);
+    }
+
+    _computeLengthAndAngle(){
+        this._length=+Math.sqrt(this.x*this.x+this.y*this.y);
+        this._angle=(this.x==0 && this.y==0)?0:+(Math.atan(this.y/this.x)*180/Math.PI);
     }
 
     add(vector2){
-        this.x+=vector2.x;
-        this.y+=vector2.y;
+        this._x+=vector2.x;
+        this._y+=vector2.y;
+        this._computeLengthAndAngle();
     }
 
 }

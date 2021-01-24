@@ -24,6 +24,10 @@ export class LinearMove extends Component{
         gameObject.addForce(this.movementVector);
     }
 
+    get currentSpeed(){
+        return this.movementVector.length;
+    }
+
     update(){
         if(this.movementVector.length<this.maxSpeed){
             let newLength=this.movementVector.length+this.acceleration;
