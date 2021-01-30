@@ -1,7 +1,7 @@
 import { HeightDirectionMove } from "../../frite/components/moves/HeightDirectionMove.js";
 import { LinearMove } from "../../frite/components/moves/LinearMove.js";
 import { PropertyModifier } from "../../frite/components/PropertyModifier.js";
-import { EveryXDelta } from "../../frite/components/time/EveryXDelta.js";
+import { EveryDeltaElapsed } from "../../frite/components/time/EveryDeltaElapsed.js";
 import { App } from "../../frite/core/App.js";
 import { Force } from "../../frite/physics/Force.js";
 import {Scene} from "../../frite/structure/Scene.js";
@@ -34,10 +34,12 @@ class GameScene extends Scene{
         spaceship.addComponent(new HeightDirectionMove({maxSpeed:3,acceleration:0.1,deceleration:0.1}));
         this.backgroundImage.addComponent(new PropertyModifier({propertyName:"tilePosition.y",propertyChanger:0.5}));
 
-        spaceship.addComponent(new EveryXDelta(60,()=>{
-            let bullet=gameLayer.createSprite("fire",{x:300,y:700});
-            bullet.addForce(new Force({angle:270,length:5}));
-        }))
+        spaceship.addComponent(new EveryDeltaElapsed(
+            {deltaInterval:60,callback:()=>{
+                let bullet=gameLayer.createSprite("fire",{x:300,y:700});
+                bullet.addForce(new Force({angle:270,length:5}));
+            }
+        }));
     }
 
 }

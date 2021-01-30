@@ -1,0 +1,29 @@
+{
+  "name": "frite",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bastienhousiaux/frite.git"
+  },
+  "keywords": [],
+  "author": "Bastien Housiaux",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bastienhousiaux/frite/issues"
+  },
+  "homepage": "https://github.com/bastienhousiaux/frite#readme",
+  "dependencies": {
+    "collisions": "^2.0.13",
+    "lodash": "^4.17.20",
+    "pixi.js": "^5.3.7"
+  }
+}
